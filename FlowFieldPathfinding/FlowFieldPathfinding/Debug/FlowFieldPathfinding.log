@@ -1,0 +1,16 @@
+﻿  Game.cpp
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\game.cpp(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\game.cpp(46): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\game.cpp(134): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\game.cpp(143): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\game.cpp(165): warning C4244: '-=': conversion from 'const double' to 'sf::Int32', possible loss of data
+  Node.cpp
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\node.cpp(8): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\node.cpp(10): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\node.cpp(16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\node.cpp(64): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\node.cpp(86): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding2\flowfieldpathfinding\node.cpp(90): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
+  Source.cpp
+  Generating Code...
+  FlowFieldPathfinding.vcxproj -> C:\Users\gameuser\Desktop\FlowFieldPathfinding\FlowFieldPathfinding2\Debug\FlowFieldPathfinding.exe
