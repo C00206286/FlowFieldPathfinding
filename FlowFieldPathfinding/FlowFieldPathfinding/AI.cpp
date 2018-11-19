@@ -4,7 +4,7 @@
 
 AI::AI(int x, int y)
 {
-	shape.setRadius(5);
+	shape.setRadius(4);
 	shape.setFillColor(sf::Color::Red);
 	shape.setPosition(x, y);
 }

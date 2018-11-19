@@ -53,40 +53,72 @@ void Game::update(double dt)
 				{
 					nodes[i]->setColor(sf::Color::Red);
 					goalNode = i;
-					goalSet = true;
 					setCost();
 					setDistance();
 					setVector();
+					goalSet = true;
 				}
 
 			}
 		}
 	}
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		if (startSet == false)
+		leftPressed = false;
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{	
+		if (leftPressed == false)
 		{
-			sf::Vector2i position = sf::Mouse::getPosition(m_window);
+				sf::Vector2i position = sf::Mouse::getPosition(m_window);
 
-			for (int i = 0; i < nodes.size(); i++)
-			{
-				if (position.x > nodes[i]->getPositionX() && position.x < nodes[i]->getPositionX() + rectSize && position.y > nodes[i]->getPositionY() && position.y < nodes[i]->getPositionY() + rectSize)
+				for (int i = 0; i < nodes.size(); i++)
 				{
-					nodes[i]->setColor(sf::Color::Green);
-					ai = new AI(nodes[i]->getPositionX() + (rectSize / 2), nodes[i]->getPositionY() + (rectSize / 2));
-					startSet = true;
-				}
+					if (position.x > nodes[i]->getPositionX() && position.x < nodes[i]->getPositionX() + rectSize && position.y > nodes[i]->getPositionY() && position.y < nodes[i]->getPositionY() + rectSize)
+					{
+						nodes[i]->setColor(sf::Color::Green);
+						ai = new AI(nodes[i]->getPositionX() + (rectSize / 2), nodes[i]->getPositionY() + (rectSize / 2));
+						ais.push_back(ai);
+						startSet = true;
+						leftPressed = true;
+					}
 
-			}
+				}
+			
 		}
 	}
 	if (startSet == true && goalSet == true)
 	{
 		for (int i = 0; i < nodes.size(); i++)
 		{
-			if (ai->getPositionX() >= nodes[i]->getPositionX() && ai->getPositionX() <= nodes[i]->getPositionX() + rectSize && ai->getPositionY() >= nodes[i]->getPositionY() && ai->getPositionY() <= nodes[i]->getPositionY() + rectSize)
+			for (int x = 0; x < ais.size(); x++)
 			{
-				ai->move(nodes[i]->getVectX(), nodes[i]->getVectY());
+				if (ais[x]->getPositionX() >= nodes[i]->getPositionX() && ais[x]->getPositionX() <= nodes[i]->getPositionX() + rectSize && ais[x]->getPositionY() >= nodes[i]->getPositionY() && ais[x]->getPositionY() <= nodes[i]->getPositionY() + rectSize)
+				{
+					if (nodes[i]->getVectX() != 0)
+					{
+						tempX = nodes[i]->getVectX();
+					}
+					if (nodes[i]->getVectX() != 0)
+					{
+						tempY = nodes[i]->getVectY();
+					}
+					if (nodes[i]->getVectX() == 0 && nodes[i]->getVectY() == 0)
+					{
+						if (tempX > tempY)
+						{
+							ais[x]->move(-tempX, tempY);
+						}
+						else if (tempY > tempX)
+						{
+							ais[x]->move(tempX, -tempY);
+						}
+					}
+					else
+					{
+						ais[x]->move(nodes[i]->getVectX(), nodes[i]->getVectY());
+					}
+				}
 			}
 		}
 	}
@@ -267,6 +299,7 @@ void Game::setVector()
 				nodes[i]->setVector(vectorX, vectorY);
 			}
 
+
 	}
 }
 void Game::setDistance()
@@ -281,14 +314,19 @@ void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0));
 	//m_player->draw(m_window);
+	
 	for (int i = 0; i < nodes.size(); i++)
 	{
 		nodes[i]->draw(m_window);
 	}
+	
 	if (startSet == true)
 	{
-		ai->draw(m_window);
-	}
+		for (int x = 0; x < ais.size(); x++)
+		{
+			ais[x]->draw(m_window);
+		}
+	} 
 	m_window.display();
 }
 void Game::run()
@@ -307,6 +345,7 @@ void Game::run()
 		while (lag > MS_PER_UPDATE)
 		{
 			update(MS_PER_UPDATE);
+			render();
 			lag -= MS_PER_UPDATE;
 		}
 		update(MS_PER_UPDATE);

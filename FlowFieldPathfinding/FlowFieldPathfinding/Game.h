@@ -36,10 +36,14 @@ protected:
 	bool RightAvailable = true;
 	bool startSet = false;
 	bool goalSet = false;
+	bool leftPressed = false;
+	double tempX = 0;
+	double tempY = 0;
 
 	sf::RectangleShape rectangle;
 	std::vector<Node*> nodes;
 	Node* node;
+	std::vector<AI*> ais;
 	AI* ai;
 
 };

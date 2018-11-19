@@ -1,10 +1,12 @@
 ﻿  Game.cpp
 c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(48): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(71): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(85): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(165): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(274): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(284): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(310): warning C4244: '-=': conversion from 'const double' to 'sf::Int32', possible loss of data
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(75): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(92): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(94): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(197): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(307): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(318): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(325): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(349): warning C4244: '-=': conversion from 'const double' to 'sf::Int32', possible loss of data
   FlowFieldPathfinding.vcxproj -> C:\Users\gameuser\Desktop\FlowFieldPathfinding\FlowFieldPathfinding\Debug\FlowFieldPathfinding.exe

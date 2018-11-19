@@ -14,5 +14,5 @@ public:
 
 private:
 	sf::CircleShape shape;
-	double speed = 0.1;
+	double speed = 5;
 };
