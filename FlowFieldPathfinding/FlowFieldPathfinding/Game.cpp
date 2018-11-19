@@ -18,6 +18,7 @@ Game::Game()
 		for (int y = 1; y <= gridY; y++)
 		{
 			int obstacleRand = rand() % 3 + 1;
+			//int obstacleRand 1;
 			if (obstacleRand != 3)
 			{
 				node = new Node(x * (rectSize + 1), y * (rectSize + 1), rectSize, costFont,0);
@@ -231,8 +232,9 @@ void Game::setVector()
 				}
 				vectorX = leftIntField - rightIntField;
 				vectorY = upIntField - downIntField;
-				std::cout << "Vector X = " << vectorX << std::endl;
-				std::cout << "Vector Y = " << vectorY << std::endl;
+				double vectMag = sqrt(((((nodes[i]->getPositionX() + (rectSize / 2)) + vectorX) - (nodes[i]->getPositionX() + (rectSize / 2))) * (((nodes[i]->getPositionX() + (rectSize / 2)) + vectorX) - (nodes[i]->getPositionX() + (rectSize / 2)))) + ((((nodes[i]->getPositionY() + (rectSize / 2)) + vectorY) - (nodes[i]->getPositionY() + (rectSize / 2))) * (((nodes[i]->getPositionY() + (rectSize / 2)) + vectorY) - (nodes[i]->getPositionY() + (rectSize / 2)))));
+				vectorX = vectorX / vectMag;
+				vectorY = vectorY / vectMag;
 				nodes[i]->setVector(vectorX, vectorY);
 			}
 
@@ -242,7 +244,7 @@ void Game::setDistance()
 {
 	for (int i = 0; i < nodes.size(); i++)
 	{
-		nodes[i]->setDistance(nodes[goalNode]->getPositionX(), nodes[goalNode]->getPositionY());
+		nodes[i]->setDistance((nodes[goalNode]->getPositionX() + (rectSize / 2)), (nodes[goalNode]->getPositionY() + (rectSize / 2)));
 	}
 }
 

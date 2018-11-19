@@ -18,7 +18,7 @@ Node::Node(int x,int y,int size, sf::Font &costFont,int obstacle)
 
 	distanceText.setFont(costFont);
 	distanceText.setStyle(sf::Text::Bold);
-	distanceText.setCharacterSize(size / 2);
+	distanceText.setCharacterSize(size / 2.5);
 	distanceText.setFillColor(sf::Color::Black);
 	distanceText.setPosition(x + size / 10, y + size / 2);
 	//costText.setString(std::to_string(cost));
@@ -39,7 +39,7 @@ void Node::update(double dt)
 
 
 }
-void Node::setCost(int x)
+void Node::setCost(double x)
 {
 	cost = x;
 	if (cost < 64)
@@ -54,10 +54,10 @@ void Node::setCost(int x)
 	{
 		rectangle.setFillColor(sf::Color(0, 0, 0, 0));
 	}
-	costText.setString(std::to_string(cost));
+	costText.setString(std::to_string((int)cost));
 	costSet = true;
 }
-int Node::getCost()
+double Node::getCost()
 {
 	return cost;
 }
@@ -68,11 +68,11 @@ bool Node::checkSet()
 
 void Node::setDistance(int goalX, int goalY)
 {
-	distanceToGoal = sqrt((((goalX - rectangle.getPosition().x)*(goalX - rectangle.getPosition().x)) + ((goalY - rectangle.getPosition().y)*(goalY - rectangle.getPosition().y))));
-	integrationField = distanceToGoal + cost;
-	distanceText.setString(std::to_string(integrationField));
+	distanceToGoal = sqrt((((goalX - (rectangle.getPosition().x + (rectSize/2)))*(goalX - (rectangle.getPosition().x + (rectSize / 2)))) + ((goalY - (rectangle.getPosition().y + (rectSize / 2)))*(goalY - (rectangle.getPosition().y + (rectSize / 2))))));
+	integrationField = distanceToGoal + cost * 100;
+	distanceText.setString(std::to_string((int)integrationField));
 }
-int Node::getIntegrationField()
+double Node::getIntegrationField()
 {
 	return integrationField;
 }
@@ -113,10 +113,20 @@ void Node::draw(sf::RenderWindow & window)
 		costDraw = true;
 		distanceDraw = false;
 	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::I))
 	{
 		distanceDraw = true;
 		costDraw = false;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::O))
+	{
+		distanceDraw = false;
+		costDraw = false;
+		vectorDraw = false;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::V))
+	{
+		vectorDraw = true;
 	}
 
 	if (costDraw == true)
@@ -129,8 +139,11 @@ void Node::draw(sf::RenderWindow & window)
 	}
 	sf::Vertex line[] =
 	{
-		sf::Vertex(sf::Vector2f((rectangle.getPosition().x + (rectSize / 2)), (rectangle.getPosition().y + (rectSize / 2)))),
-		sf::Vertex(sf::Vector2f(rectangle.getPosition().x + vectX, rectangle.getPosition().y + vectY))
+		sf::Vertex(sf::Vector2f((rectangle.getPosition().x + (rectSize / 2)), (rectangle.getPosition().y + (rectSize / 2))),sf::Color::Magenta),
+		sf::Vertex(sf::Vector2f((rectangle.getPosition().x + (rectSize / 2))+ (vectX * 15), (rectangle.getPosition().y + (rectSize / 2)) + (vectY * 15)),sf::Color::Magenta)
 	};
-	window.draw(line, 2, sf::Lines);
+	if (vectorDraw == true)
+	{
+		window.draw(line, 2, sf::Lines);
+	}
 }

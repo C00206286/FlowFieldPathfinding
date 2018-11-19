@@ -11,11 +11,11 @@ public:
 	int getPositionX();
 	int getPositionY();
 	void setColor(sf::Color color);
-	void setCost(int x);
+	void setCost(double x);
 	void setDistance(int goalX,int goalY);
 	void setVector(double vectorX, double vectorY);
-	int getCost();
-	int getIntegrationField();
+	double getCost();
+	double getIntegrationField();
 	bool checkSet();
 	int rectSize;
 	sf::Vertex Line[2];
@@ -24,8 +24,8 @@ private:
 
 	double vectX = 0;
 	double vectY = 0;
-	int distanceToGoal = 0;
-	int integrationField = 0;
+	double distanceToGoal = 0;
+	double integrationField = 0;
 	sf::Text costText;
 	sf::Text distanceText;
 	sf::RectangleShape rectangle;
@@ -33,6 +33,7 @@ private:
 	bool goal = false;
 	bool costSet = false;
 	bool costDraw = true;
+	bool vectorDraw = true;
 	bool distanceDraw = false;
-	int cost = 0;
+	double cost = 0;
 };
