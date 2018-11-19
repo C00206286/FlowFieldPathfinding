@@ -16,6 +16,8 @@ public:
 	void setCost(double x);
 	void setDistance(int goalX,int goalY);
 	void setVector(double vectorX, double vectorY);
+	void setIntegrationField(double field);
+	void setCheck(int num);
 	double getCost();
 	double getIntegrationField();
 	bool checkSet();

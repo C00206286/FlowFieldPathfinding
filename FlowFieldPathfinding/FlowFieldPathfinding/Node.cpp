@@ -65,6 +65,18 @@ bool Node::checkSet()
 {
 	return costSet;
 }
+void Node::setCheck(int num)
+{
+	if (num == 0)
+	{
+		costSet = false;
+	}
+	if (num == 1)
+	{
+		costSet = true;
+	}
+}
+
 
 void Node::setDistance(int goalX, int goalY)
 {
@@ -76,7 +88,10 @@ double Node::getIntegrationField()
 {
 	return integrationField;
 }
-
+void Node::setIntegrationField(double field)
+{
+	integrationField = field;
+}
 void Node::setColor(sf::Color color)
 {
 	if (start == false)

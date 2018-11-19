@@ -23,7 +23,9 @@ protected:
 	void setVector();
 	void setDistance();
 	void render();
+	void createGrid();
 	void processEvents();
+	void clearAll();
 	void processGameEvents(sf::Event&);
 	int goalNode;
 	//Player* m_player;

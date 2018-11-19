@@ -8,12 +8,19 @@ Game::Game()
 	: m_window(sf::VideoMode(2200, 2200), "Brendans Game :)")
 
 {
+	createGrid();
+	m_window.setVerticalSyncEnabled(true);
+	//m_player = new Player();
+
+}
+void Game::createGrid()
+{
 	if (!costFont.loadFromFile("font.ttf"))
 	{
 	}
 	srand(time(NULL));
-	
-	
+
+
 	for (int x = 1; x <= gridX; x++)
 	{
 		for (int y = 1; y <= gridY; y++)
@@ -22,21 +29,16 @@ Game::Game()
 			//int obstacleRand 1;
 			if (obstacleRand != 3)
 			{
-				node = new Node(x * (rectSize + 1), y * (rectSize + 1), rectSize, costFont,0);
+				node = new Node(x * (rectSize + 1), y * (rectSize + 1), rectSize, costFont, 0);
 			}
 			else
 			{
-				node = new Node(x * (rectSize + 1), y * (rectSize + 1), rectSize, costFont,1);
+				node = new Node(x * (rectSize + 1), y * (rectSize + 1), rectSize, costFont, 1);
 			}
 			nodes.push_back(node);
 		}
 	}
-	
-	m_window.setVerticalSyncEnabled(true);
-	//m_player = new Player();
-
 }
-
 void Game::update(double dt)
 {
 	sf::Time deltaTime;
@@ -49,18 +51,35 @@ void Game::update(double dt)
 		{
 			if (position.x > nodes[i]->getPositionX() && position.x < nodes[i]->getPositionX() + rectSize && position.y > nodes[i]->getPositionY() && position.y < nodes[i]->getPositionY() + rectSize)
 			{
-				if (goalSet == false)
-				{
-					nodes[i]->setColor(sf::Color::Red);
-					goalNode = i;
-					setCost();
-					setDistance();
-					setVector();
-					goalSet = true;
-				}
+					if (goalSet == true)
+					{
+						clearAll();
+						goalNode = i;
+						setCost();
+						setDistance();
+						setVector();
+						nodes[i]->setColor(sf::Color::Red);
+					}
+					else
+					{
+						goalNode = i;
+						setCost();
+						setDistance();
+						setVector();
+						nodes[i]->setColor(sf::Color::Red);
+						goalSet = true;
+					}
 
 			}
 		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R))
+	{
+		goalSet = false;
+		startSet = false;
+		ais.clear();
+		nodes.clear();
+		createGrid();
 	}
 	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
@@ -95,35 +114,55 @@ void Game::update(double dt)
 			{
 				if (ais[x]->getPositionX() >= nodes[i]->getPositionX() && ais[x]->getPositionX() <= nodes[i]->getPositionX() + rectSize && ais[x]->getPositionY() >= nodes[i]->getPositionY() && ais[x]->getPositionY() <= nodes[i]->getPositionY() + rectSize)
 				{
-					if (nodes[i]->getVectX() != 0)
+					if (i == goalNode)
 					{
-						tempX = nodes[i]->getVectX();
-					}
-					if (nodes[i]->getVectX() != 0)
-					{
-						tempY = nodes[i]->getVectY();
-					}
-					if (nodes[i]->getVectX() == 0 && nodes[i]->getVectY() == 0)
-					{
-						if (tempX > tempY)
-						{
-							ais[x]->move(-tempX, tempY);
-						}
-						else if (tempY > tempX)
-						{
-							ais[x]->move(tempX, -tempY);
-						}
+						ais.erase(ais.begin() + x);
 					}
 					else
 					{
-						ais[x]->move(nodes[i]->getVectX(), nodes[i]->getVectY());
+						if (nodes[i]->getVectX() != 0)
+						{
+							tempX = nodes[i]->getVectX();
+						}
+						if (nodes[i]->getVectX() != 0)
+						{
+							tempY = nodes[i]->getVectY();
+						}
+						if (nodes[i]->getVectX() == 0 && nodes[i]->getVectY() == 0)
+						{
+							if (tempX > tempY)
+							{
+								ais[x]->move(-tempX, tempY);
+							}
+							else if (tempY > tempX)
+							{
+								ais[x]->move(tempX, -tempY);
+							}
+						}
+						else
+						{
+							ais[x]->move(nodes[i]->getVectX(), nodes[i]->getVectY());
+						}
 					}
 				}
 			}
 		}
 	}
 }
-
+void Game::clearAll()
+{
+	for (int i = 0; i < nodes.size(); i++)
+	{
+		if (nodes[i]->getCost() < 999)
+		{
+			nodes[i]->setCost(0);
+			nodes[i]->setCheck(0);
+			nodes[i]->setColor(sf::Color::White);
+		}
+		nodes[i]->setVector(0, 0);
+		nodes[i]->setIntegrationField(0);
+	}
+}
 void Game::setCost()
 {	
 	std::vector<int> que;
