@@ -10,6 +10,8 @@ public:
 	void draw(sf::RenderWindow & window);
 	int getPositionX();
 	int getPositionY();
+	double getVectX();
+	double getVectY();
 	void setColor(sf::Color color);
 	void setCost(double x);
 	void setDistance(int goalX,int goalY);

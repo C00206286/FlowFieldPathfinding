@@ -69,7 +69,7 @@ bool Node::checkSet()
 void Node::setDistance(int goalX, int goalY)
 {
 	distanceToGoal = sqrt((((goalX - (rectangle.getPosition().x + (rectSize/2)))*(goalX - (rectangle.getPosition().x + (rectSize / 2)))) + ((goalY - (rectangle.getPosition().y + (rectSize / 2)))*(goalY - (rectangle.getPosition().y + (rectSize / 2))))));
-	integrationField = distanceToGoal + cost * 100;
+	integrationField = distanceToGoal + cost * 10;
 	distanceText.setString(std::to_string((int)integrationField));
 }
 double Node::getIntegrationField()
@@ -96,7 +96,14 @@ void Node::setVector(double vectorX, double vectorY)
 	vectX = vectorX;
 	vectY = vectorY;
 }
-
+double Node::getVectX()
+{
+	return vectX;
+}
+double Node::getVectY()
+{
+	return vectY;
+}
 int Node::getPositionX()
 {
 	return rectangle.getPosition().x;

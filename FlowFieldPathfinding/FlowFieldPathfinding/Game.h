@@ -1,9 +1,11 @@
 #pragma once
 //#include "Player.h"
 #include "Node.h"
+#include "AI.h"
 #include <SFML/Graphics.hpp>
 
 class Node;
+class AI;
 
 class Game
 {
@@ -32,11 +34,12 @@ protected:
 	bool DownAvailable = true;
 	bool LeftAvailable = true;
 	bool RightAvailable = true;
-
+	bool startSet = false;
 	bool goalSet = false;
 
 	sf::RectangleShape rectangle;
 	std::vector<Node*> nodes;
 	Node* node;
+	AI* ai;
 
 };

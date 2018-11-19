@@ -12,12 +12,13 @@ Game::Game()
 	{
 	}
 	srand(time(NULL));
-
+	
+	
 	for (int x = 1; x <= gridX; x++)
 	{
 		for (int y = 1; y <= gridY; y++)
 		{
-			int obstacleRand = rand() % 3 + 1;
+			int obstacleRand = rand() % 12 + 1;
 			//int obstacleRand 1;
 			if (obstacleRand != 3)
 			{
@@ -40,7 +41,7 @@ void Game::update(double dt)
 {
 	sf::Time deltaTime;
 	//m_player->update(dt);
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 	{
 		sf::Vector2i position = sf::Mouse::getPosition(m_window);
 
@@ -58,6 +59,34 @@ void Game::update(double dt)
 					setVector();
 				}
 
+			}
+		}
+	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		if (startSet == false)
+		{
+			sf::Vector2i position = sf::Mouse::getPosition(m_window);
+
+			for (int i = 0; i < nodes.size(); i++)
+			{
+				if (position.x > nodes[i]->getPositionX() && position.x < nodes[i]->getPositionX() + rectSize && position.y > nodes[i]->getPositionY() && position.y < nodes[i]->getPositionY() + rectSize)
+				{
+					nodes[i]->setColor(sf::Color::Green);
+					ai = new AI(nodes[i]->getPositionX() + (rectSize / 2), nodes[i]->getPositionY() + (rectSize / 2));
+					startSet = true;
+				}
+
+			}
+		}
+	}
+	if (startSet == true && goalSet == true)
+	{
+		for (int i = 0; i < nodes.size(); i++)
+		{
+			if (ai->getPositionX() >= nodes[i]->getPositionX() && ai->getPositionX() <= nodes[i]->getPositionX() + rectSize && ai->getPositionY() >= nodes[i]->getPositionY() && ai->getPositionY() <= nodes[i]->getPositionY() + rectSize)
+			{
+				ai->move(nodes[i]->getVectX(), nodes[i]->getVectY());
 			}
 		}
 	}
@@ -255,6 +284,10 @@ void Game::render()
 	for (int i = 0; i < nodes.size(); i++)
 	{
 		nodes[i]->draw(m_window);
+	}
+	if (startSet == true)
+	{
+		ai->draw(m_window);
 	}
 	m_window.display();
 }
