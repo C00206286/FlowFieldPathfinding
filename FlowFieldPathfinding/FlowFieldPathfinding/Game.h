@@ -18,6 +18,7 @@ protected:
 	int gridY = 50;
 	void update(double dt);
 	void setCost();
+	void setVector();
 	void setDistance();
 	void render();
 	void processEvents();

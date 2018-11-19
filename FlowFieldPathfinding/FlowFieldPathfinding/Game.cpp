@@ -54,6 +54,7 @@ void Game::update(double dt)
 					goalSet = true;
 					setCost();
 					setDistance();
+					setVector();
 				}
 
 			}
@@ -87,9 +88,9 @@ void Game::setCost()
 		{
 			UpAvailable = false;
 		}
-		for (int i = 0; i < gridX; i++)
+		for (int x = 0; x < gridX; x++)
 		{
-			if (que.front() == ((gridY - 1) + (gridY * i)))
+			if (que.front() == ((gridY - 1) + (gridY * x)))
 			{
 				DownAvailable = false;
 			}
@@ -129,6 +130,114 @@ void Game::setCost()
 		que.erase(que.begin());
 	}
 }
+void Game::setVector()
+{
+	for (int i = 0; i < nodes.size(); i++)
+	{
+	
+			UpAvailable = true;
+			DownAvailable = true;
+			LeftAvailable = true;
+			RightAvailable = true;
+			int indexHorizontal = gridY;
+			int indexVertical = 1;
+			double leftIntField = 0;
+			double rightIntField = 0;
+			double upIntField = 0;
+			double downIntField = 0;
+			double vectorX = 0;
+			double vectorY = 0;
+			if (nodes[i]->getIntegrationField() < 9000)
+			{
+				if (i < gridY)
+				{
+					LeftAvailable = false;
+				}
+				if (i > ((gridX * gridY) - (gridY + 1))) //2249
+				{
+					RightAvailable = false;
+				}
+				if (i % gridY == 0)
+				{
+					UpAvailable = false;
+				}
+				for (int iter = 0; iter < gridX; iter++)
+				{
+					if (i == ((gridY - 1) + (gridY * iter)))
+					{
+						DownAvailable = false;
+					}
+				}
+				if (UpAvailable == true)
+				{
+					if (nodes[i - indexVertical]->getIntegrationField() < 9000)
+					{
+						upIntField = nodes[i - indexVertical]->getIntegrationField();
+					}
+					else
+					{
+						upIntField = nodes[i]->getIntegrationField();
+					}
+				}
+				else
+				{
+					upIntField = nodes[i]->getIntegrationField();
+				}
+				if (DownAvailable == true)
+				{
+
+					if (nodes[i + indexVertical]->getIntegrationField() < 9000)
+					{
+						downIntField = nodes[i + indexVertical]->getIntegrationField();
+					}
+					else
+					{
+						downIntField = nodes[i]->getIntegrationField();
+					}
+				}
+				else
+				{
+					downIntField = nodes[i]->getIntegrationField();
+				}
+				if (LeftAvailable == true)
+				{
+					if (nodes[i - indexHorizontal]->getIntegrationField() < 9000)
+					{
+						leftIntField = nodes[i - indexHorizontal]->getIntegrationField();
+					}
+					else
+					{
+						leftIntField = nodes[i]->getIntegrationField();
+					}
+				}
+				else
+				{
+					leftIntField = nodes[i]->getIntegrationField();
+				}
+				if (RightAvailable == true)
+				{
+					if (nodes[i + indexHorizontal]->getIntegrationField() < 9000)
+					{
+						rightIntField = nodes[i + indexHorizontal]->getIntegrationField();
+					}
+					else
+					{
+						rightIntField = nodes[i]->getIntegrationField();
+					}
+				}
+				else
+				{
+					rightIntField = nodes[i]->getIntegrationField();
+				}
+				vectorX = leftIntField - rightIntField;
+				vectorY = upIntField - downIntField;
+				std::cout << "Vector X = " << vectorX << std::endl;
+				std::cout << "Vector Y = " << vectorY << std::endl;
+				nodes[i]->setVector(vectorX, vectorY);
+			}
+
+	}
+}
 void Game::setDistance()
 {
 	for (int i = 0; i < nodes.size(); i++)
@@ -136,6 +245,7 @@ void Game::setDistance()
 		nodes[i]->setDistance(nodes[goalNode]->getPositionX(), nodes[goalNode]->getPositionY());
 	}
 }
+
 void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0));

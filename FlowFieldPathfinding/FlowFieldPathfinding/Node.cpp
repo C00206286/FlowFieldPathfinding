@@ -4,6 +4,7 @@
 
 Node::Node(int x,int y,int size, sf::Font &costFont,int obstacle)
 {
+	rectSize = size;
 
 	rectangle.setSize(sf::Vector2f(size, size));
 	rectangle.setFillColor(sf::Color::White);
@@ -14,10 +15,16 @@ Node::Node(int x,int y,int size, sf::Font &costFont,int obstacle)
 	costText.setCharacterSize(size/2);
 	costText.setFillColor(sf::Color::Black);
 	costText.setPosition(x + size/10, y + size/2);
+
+	distanceText.setFont(costFont);
+	distanceText.setStyle(sf::Text::Bold);
+	distanceText.setCharacterSize(size / 2);
+	distanceText.setFillColor(sf::Color::Black);
+	distanceText.setPosition(x + size / 10, y + size / 2);
 	//costText.setString(std::to_string(cost));
 	if (obstacle == 1)
 	{
-		setCost(999);
+		setCost(999999);
 	}
 }
 
@@ -43,7 +50,7 @@ void Node::setCost(int x)
 	{
 		rectangle.setFillColor(sf::Color(0, 0, 255, 255));
 	}
-	if (cost >= 999)
+	if (cost >= 999999)
 	{
 		rectangle.setFillColor(sf::Color(0, 0, 0, 0));
 	}
@@ -63,7 +70,11 @@ void Node::setDistance(int goalX, int goalY)
 {
 	distanceToGoal = sqrt((((goalX - rectangle.getPosition().x)*(goalX - rectangle.getPosition().x)) + ((goalY - rectangle.getPosition().y)*(goalY - rectangle.getPosition().y))));
 	integrationField = distanceToGoal + cost;
-	costText.setString(std::to_string(integrationField));
+	distanceText.setString(std::to_string(integrationField));
+}
+int Node::getIntegrationField()
+{
+	return integrationField;
 }
 
 void Node::setColor(sf::Color color)
@@ -80,6 +91,11 @@ void Node::setColor(sf::Color color)
 	}
 	//rectangle.setFillColor(color);
 }
+void Node::setVector(double vectorX, double vectorY)
+{
+	vectX = vectorX;
+	vectY = vectorY;
+}
 
 int Node::getPositionX()
 {
@@ -92,5 +108,29 @@ int Node::getPositionY()
 void Node::draw(sf::RenderWindow & window)
 {
 	window.draw(rectangle);
-	window.draw(costText);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::C))
+	{
+		costDraw = true;
+		distanceDraw = false;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+	{
+		distanceDraw = true;
+		costDraw = false;
+	}
+
+	if (costDraw == true)
+	{
+		window.draw(costText);
+	}
+	if (distanceDraw == true)
+	{
+		window.draw(distanceText);
+	}
+	sf::Vertex line[] =
+	{
+		sf::Vertex(sf::Vector2f((rectangle.getPosition().x + (rectSize / 2)), (rectangle.getPosition().y + (rectSize / 2)))),
+		sf::Vertex(sf::Vector2f(rectangle.getPosition().x + vectX, rectangle.getPosition().y + vectY))
+	};
+	window.draw(line, 2, sf::Lines);
 }
