@@ -132,11 +132,27 @@ void Game::update(double dt)
 						{
 							if (tempX > tempY)
 							{
-								ais[x]->move(-tempX, tempY);
+								if (tempX <= 0)
+								{
+									ais[x]->move(-tempX, tempY);
+								}
+								if (tempX > 0)
+								{
+									
+									ais[x]->move(tempX, -tempY);
+									
+								}
 							}
 							else if (tempY > tempX)
 							{
-								ais[x]->move(tempX, -tempY);
+								if (tempY <= 0)
+								{
+									ais[x]->move(tempX, -tempY);
+								}
+								if (tempY > 0)
+								{
+									ais[x]->move(-tempX, tempY);
+								}
 							}
 						}
 						else

@@ -4,22 +4,10 @@ c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpat
 c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(94): warning C4018: '<': signed/unsigned mismatch
 c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(111): warning C4018: '<': signed/unsigned mismatch
 c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(113): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(154): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(236): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(346): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(357): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(364): warning C4018: '<': signed/unsigned mismatch
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(388): warning C4244: '-=': conversion from 'const double' to 'sf::Int32', possible loss of data
-  Node.cpp
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\node.cpp(9): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\node.cpp(11): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\node.cpp(17): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\node.cpp(21): warning C4244: 'argument': conversion from 'double' to 'unsigned int', possible loss of data
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\node.cpp(23): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\node.cpp(47): warning C4244: 'argument': conversion from 'double' to 'sf::Uint8', possible loss of data
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\node.cpp(124): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\node.cpp(128): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\node.cpp(165): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Source.cpp
-  Generating Code...
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(170): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(252): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(362): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(373): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(380): warning C4018: '<': signed/unsigned mismatch
+c:\users\gameuser\desktop\flowfieldpathfinding\flowfieldpathfinding\flowfieldpathfinding\game.cpp(404): warning C4244: '-=': conversion from 'const double' to 'sf::Int32', possible loss of data
   FlowFieldPathfinding.vcxproj -> C:\Users\gameuser\Desktop\FlowFieldPathfinding\FlowFieldPathfinding\Debug\FlowFieldPathfinding.exe
