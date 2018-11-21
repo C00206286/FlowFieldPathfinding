@@ -15,6 +15,7 @@ public:
 	//sf::Vector2f getPlayerPosition();
 
 protected:
+	int randomSize = 1;
 	int rectSize = 40;
 	int gridX = 50;
 	int gridY = 50;
@@ -23,7 +24,7 @@ protected:
 	void setVector();
 	void setDistance();
 	void render();
-	void createGrid();
+	void createGrid(int random);
 	void processEvents();
 	void clearAll();
 	void processGameEvents(sf::Event&);
@@ -32,6 +33,11 @@ protected:
 	sf::RenderWindow m_window;
 	sf::Font costFont;
 	
+	sf::Text randomText;
+
+	bool UpPressed = false;
+	bool DownPressed = false;
+
 	bool UpAvailable = true;
 	bool DownAvailable = true;
 	bool LeftAvailable = true;

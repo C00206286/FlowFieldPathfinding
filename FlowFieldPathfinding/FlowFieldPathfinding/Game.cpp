@@ -8,16 +8,23 @@ Game::Game()
 	: m_window(sf::VideoMode(2200, 2200), "Brendans Game :)")
 
 {
-	createGrid();
+	createGrid(randomSize);
 	m_window.setVerticalSyncEnabled(true);
+
+
 	//m_player = new Player();
 
 }
-void Game::createGrid()
+void Game::createGrid(int random)
 {
 	if (!costFont.loadFromFile("font.ttf"))
 	{
 	}
+	randomText.setFont(costFont);
+	randomText.setStyle(sf::Text::Bold);
+	randomText.setCharacterSize(20);
+	randomText.setFillColor(sf::Color::White);
+	randomText.setPosition(2150, 50);
 	srand(time(NULL));
 
 
@@ -25,9 +32,9 @@ void Game::createGrid()
 	{
 		for (int y = 1; y <= gridY; y++)
 		{
-			int obstacleRand = rand() % 12 + 1;
+			int obstacleRand = rand() % random + 1;
 			//int obstacleRand 1;
-			if (obstacleRand != 3)
+			if (obstacleRand != 2)
 			{
 				node = new Node(x * (rectSize + 1), y * (rectSize + 1), rectSize, costFont, 0);
 			}
@@ -41,8 +48,37 @@ void Game::createGrid()
 }
 void Game::update(double dt)
 {
+	randomText.setString(std::to_string(randomSize));
 	sf::Time deltaTime;
 	//m_player->update(dt);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::L))
+	{
+		sf::Vector2i position = sf::Mouse::getPosition(m_window);
+
+		for (int i = 0; i < nodes.size(); i++)
+		{
+			if (position.x > nodes[i]->getPositionX() && position.x < nodes[i]->getPositionX() + rectSize && position.y > nodes[i]->getPositionY() && position.y < nodes[i]->getPositionY() + rectSize)
+			{
+				nodes[i]->setCost(999999);
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::K))
+	{
+		sf::Vector2i position = sf::Mouse::getPosition(m_window);
+
+		for (int i = 0; i < nodes.size(); i++)
+		{
+			if (position.x > nodes[i]->getPositionX() && position.x < nodes[i]->getPositionX() + rectSize && position.y > nodes[i]->getPositionY() && position.y < nodes[i]->getPositionY() + rectSize)
+			{
+				nodes[i]->setCost(0);
+				nodes[i]->setCheck(0);
+				nodes[i]->setVector(0, 0);
+				nodes[i]->setIntegrationField(0);
+				nodes[i]->setColor(sf::Color::White);
+			}
+		}
+	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 	{
 		sf::Vector2i position = sf::Mouse::getPosition(m_window);
@@ -79,7 +115,37 @@ void Game::update(double dt)
 		startSet = false;
 		ais.clear();
 		nodes.clear();
-		createGrid();
+		createGrid(randomSize);
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+	{
+		UpPressed = false;
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+	{
+		DownPressed = false;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+	{
+		if (UpPressed == false)
+		{
+			UpPressed = true;
+			if (randomSize < 99)
+			{
+				randomSize = randomSize + 1;
+			}
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+	{
+		if (DownPressed == false)
+		{
+			DownPressed = true;
+			if (randomSize > 1)
+			{
+				randomSize = randomSize - 1;
+			}
+		}
 	}
 	if (!sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
@@ -264,6 +330,7 @@ void Game::setVector()
 			double downIntField = 0;
 			double vectorX = 0;
 			double vectorY = 0;
+			int offset = 15;
 			if (nodes[i]->getIntegrationField() < 9000)
 			{
 				if (i < gridY)
@@ -293,12 +360,12 @@ void Game::setVector()
 					}
 					else
 					{
-						upIntField = nodes[i]->getIntegrationField();
+						upIntField = nodes[i]->getIntegrationField() + nodes[i]->getIntegrationField() / offset;
 					}
 				}
 				else
 				{
-					upIntField = nodes[i]->getIntegrationField();
+					upIntField = nodes[i]->getIntegrationField() + nodes[i]->getIntegrationField() / offset;
 				}
 				if (DownAvailable == true)
 				{
@@ -309,12 +376,12 @@ void Game::setVector()
 					}
 					else
 					{
-						downIntField = nodes[i]->getIntegrationField();
+						downIntField = nodes[i]->getIntegrationField() + nodes[i]->getIntegrationField() / offset;
 					}
 				}
 				else
 				{
-					downIntField = nodes[i]->getIntegrationField();
+					downIntField = nodes[i]->getIntegrationField() + nodes[i]->getIntegrationField() / offset;
 				}
 				if (LeftAvailable == true)
 				{
@@ -324,12 +391,12 @@ void Game::setVector()
 					}
 					else
 					{
-						leftIntField = nodes[i]->getIntegrationField();
+						leftIntField = nodes[i]->getIntegrationField() + nodes[i]->getIntegrationField() / offset;
 					}
 				}
 				else
 				{
-					leftIntField = nodes[i]->getIntegrationField();
+					leftIntField = nodes[i]->getIntegrationField() + nodes[i]->getIntegrationField() / offset;
 				}
 				if (RightAvailable == true)
 				{
@@ -339,12 +406,12 @@ void Game::setVector()
 					}
 					else
 					{
-						rightIntField = nodes[i]->getIntegrationField();
+						rightIntField = nodes[i]->getIntegrationField() + nodes[i]->getIntegrationField() / offset;
 					}
 				}
 				else
 				{
-					rightIntField = nodes[i]->getIntegrationField();
+					rightIntField = nodes[i]->getIntegrationField() + nodes[i]->getIntegrationField() / offset;
 				}
 				vectorX = leftIntField - rightIntField;
 				vectorY = upIntField - downIntField;
@@ -369,7 +436,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color(0, 0, 0));
 	//m_player->draw(m_window);
-	
+	m_window.draw(randomText);
 	for (int i = 0; i < nodes.size(); i++)
 	{
 		nodes[i]->draw(m_window);

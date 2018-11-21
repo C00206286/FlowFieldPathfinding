@@ -81,7 +81,7 @@ void Node::setCheck(int num)
 void Node::setDistance(int goalX, int goalY)
 {
 	distanceToGoal = sqrt((((goalX - (rectangle.getPosition().x + (rectSize/2)))*(goalX - (rectangle.getPosition().x + (rectSize / 2)))) + ((goalY - (rectangle.getPosition().y + (rectSize / 2)))*(goalY - (rectangle.getPosition().y + (rectSize / 2))))));
-	integrationField = distanceToGoal + cost * 10;
+	integrationField = distanceToGoal + cost * 80;
 	distanceText.setString(std::to_string((int)integrationField));
 }
 double Node::getIntegrationField()
