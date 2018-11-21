@@ -161,7 +161,7 @@ void Game::update(double dt)
 				{
 					if (position.x > nodes[i]->getPositionX() && position.x < nodes[i]->getPositionX() + rectSize && position.y > nodes[i]->getPositionY() && position.y < nodes[i]->getPositionY() + rectSize)
 					{
-						nodes[i]->setColor(sf::Color::Green);
+						//nodes[i]->setColor(sf::Color::Green);
 						ai = new AI(nodes[i]->getPositionX() + (rectSize / 2), nodes[i]->getPositionY() + (rectSize / 2));
 						ais.push_back(ai);
 						startSet = true;
@@ -330,7 +330,7 @@ void Game::setVector()
 			double downIntField = 0;
 			double vectorX = 0;
 			double vectorY = 0;
-			int offset = 15;
+			int offset = 20;
 			if (nodes[i]->getIntegrationField() < 9000)
 			{
 				if (i < gridY)
