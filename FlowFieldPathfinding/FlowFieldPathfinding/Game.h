@@ -15,6 +15,7 @@ public:
 	//sf::Vector2f getPlayerPosition();
 
 protected:
+	bool zPressed = false;
 	int randomSize = 1;
 	int rectSize = 40;
 	int gridX = 50;

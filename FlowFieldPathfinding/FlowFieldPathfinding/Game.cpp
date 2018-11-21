@@ -79,6 +79,21 @@ void Game::update(double dt)
 			}
 		}
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
+	{
+		if (zPressed == false)
+		{
+			zPressed = true;
+			for (int i = 0; i < nodes.size(); i++)
+			{
+				nodes[i]->swapIntegrationCalc();
+			}
+		}
+	}
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Z))
+	{
+		zPressed = false;
+	}
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
 	{
 		sf::Vector2i position = sf::Mouse::getPosition(m_window);
@@ -330,7 +345,7 @@ void Game::setVector()
 			double downIntField = 0;
 			double vectorX = 0;
 			double vectorY = 0;
-			int offset = 20;
+			int offset = 19;
 			if (nodes[i]->getIntegrationField() < 9000)
 			{
 				if (i < gridY)

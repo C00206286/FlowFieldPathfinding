@@ -39,6 +39,17 @@ void Node::update(double dt)
 
 
 }
+void Node::swapIntegrationCalc()
+{
+	if (useDistance == false)
+	{
+		useDistance = true;
+	}
+	else
+	{
+		useDistance = false;
+	}
+}
 void Node::setCost(double x)
 {
 	cost = x;
@@ -81,7 +92,14 @@ void Node::setCheck(int num)
 void Node::setDistance(int goalX, int goalY)
 {
 	distanceToGoal = sqrt((((goalX - (rectangle.getPosition().x + (rectSize/2)))*(goalX - (rectangle.getPosition().x + (rectSize / 2)))) + ((goalY - (rectangle.getPosition().y + (rectSize / 2)))*(goalY - (rectangle.getPosition().y + (rectSize / 2))))));
-	integrationField = distanceToGoal + cost * 60;
+	if (useDistance == true)
+	{
+		integrationField = distanceToGoal + cost * 60;
+	}
+	else if (useDistance == false)
+	{
+		integrationField = cost;
+	}
 	distanceText.setString(std::to_string((int)integrationField));
 }
 double Node::getIntegrationField()

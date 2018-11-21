@@ -23,9 +23,11 @@ public:
 	bool checkSet();
 	int rectSize;
 	sf::Vertex Line[2];
+	void swapIntegrationCalc();
 
 private:
 
+	bool useDistance = true;
 	double vectX = 0;
 	double vectY = 0;
 	double distanceToGoal = 0;
